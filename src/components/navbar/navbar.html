@@ -1,0 +1,16 @@
+<ion-navbar [hideBackButton]="hideBackButton">
+  <ion-buttons left *ngIf="profilebtn">
+    <profile-button></profile-button>
+  </ion-buttons>
+
+  <ion-title>
+    <img src="/assets/img/background/wow_title.png">
+  </ion-title>
+
+  <ion-buttons end *ngIf="menu">
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-buttons>
+
+</ion-navbar>

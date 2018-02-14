@@ -1,0 +1,96 @@
+.content {
+    background-position: center;
+    background-size: cover;
+
+    .character-ilvl {
+        display: flex;
+        justify-content: space-between;
+        font-size: 18px;
+        color: #f8b700;
+        margin: 15px 4px 35px 4px;
+        font-weight: 700;
+
+        .equipped, .inBags {
+            display: flex;
+            align-items: center;
+
+            svg {
+                height: 16px;
+                width: 16px;
+                fill: currentColor;
+                margin: 0 5px;
+            }
+        }
+    }
+
+    .gear {
+        display: flex;
+        justify-content: space-between;
+
+        .gear-left, .gear-bottom, .gear-right {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gear-bottom {
+            flex-direction: row;
+            align-self: flex-end;
+        }
+    }
+}
+
+.gear-item {
+    background-image: url(https://worldofwarcraft.akamaized.net/static/components/GameIcon/GameIcon-slots.png);
+    background-color: #000;
+    background-size: cover;
+    border: 1px solid #333;
+    height: 48px;
+    width: 48px;
+    margin: 5px;
+
+    &.head {
+        background-position: 0 0%;
+    }
+    &.neck {
+        background-position: 0 -100%;
+    }
+    &.shoulder {
+        background-position: 0 -200%;
+    }
+    &.chest, &.back {
+        background-position: 0 -300%;
+    }
+    &.shirt {
+        background-position: 0 -400%;
+    }
+    &.tabard {
+        background-position: 0 -500%;
+    }
+    &.wrist {
+        background-position: 0 -600%;
+    }
+    &.hands {
+        background-position: 0 -700%;
+    }
+    &.waist {
+        background-position: 0 -800%;
+    }
+    &.legs {
+        background-position: 0 -900%;
+    }
+    &.feet {
+        background-position: 0 -1000%;
+    }
+    &.finger1, &.finger2 {
+        background-position: 0 -1100%;
+    }
+    &.trinket1, &.trinket2 {
+        background-position: 0 -1200%;
+    }
+    &.mainHand {
+        background-position: 0 -1300%;
+    }
+    &.offHand {
+        background-position: 0 -1400%;
+    }
+}

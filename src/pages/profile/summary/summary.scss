@@ -1,0 +1,204 @@
+.summary-container {
+    display: flex;
+
+    .character-thumbnail {
+        display: flex;
+        align-items: center;
+    
+        ion-img {
+            margin-right: 13px;
+        }
+    }
+    
+    .summary-profile {
+        display: flex;
+        width: 100%;
+    
+        .summary-profile-nameArea {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            flex: 1;
+    
+            .summary-profile-nameTitle {
+                line-height: 15px;
+
+                .summary-profile-name-lvl {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .name {
+                        font-size: 16px;
+                        font-weight: 700;
+                        display: block;
+                        text-decoration: none;
+                    }
+
+                    .level {
+                        font-size: 13px;
+                    }
+                }
+                .title {
+                    font-size: 13px;
+                    font-weight: 700;
+                }
+            }
+    
+            .summary-profile-stats {
+                display: flex;
+                align-items: center;
+                color: #f8b700;
+                font-size: 13px;
+    
+                svg {
+                    height: 16px;
+                    width: 16px;
+                    fill: currentColor;
+                    margin-bottom: 1px;
+                    margin-right: 4px;
+                }
+    
+                .achievement-points {
+                    padding-right: 10px;
+                }
+            }
+    
+            .characterheader-details {
+                font-size: 13px;
+    
+                span {
+                    .guild {
+                        color: #f8b700;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.stats-container {
+    height: auto;
+    padding-top: 25px;
+    margin: 28px 10px 12px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,.25);;
+    border-bottom: 1px solid rgba(255,255,255,.25);;
+
+    .stats {
+        width: 100%;
+
+        .stat-container {
+            width: 100%;
+            display: flex;
+            // justify-content: center;
+            // align-items: center;
+            flex-wrap: wrap;
+
+            .stat {
+                display: flex;
+                width: 50%;
+                padding-bottom: 30px;
+
+                svg {
+                    height: 30px;
+                    width: 30px;
+                    fill: currentColor;
+                }
+
+                .values {
+                    display: flex;
+                    flex-direction: column;
+                    // justify-content: center;
+                    padding: 0 10px;
+                    font-size: 13px;
+
+                    .description {
+                        color: #fff;
+                        text-transform: uppercase;
+                        // margin-top: 5px;
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            // .stat {
+            //     height: auto;
+            //     width: 40%;
+            //     margin: 10px;
+            //     flex-grow: 1;
+            //     display: flex;
+
+            //     svg {
+            //         height: 48px;
+            //         fill: currentColor;
+            //     }
+
+            //     .values {
+            //         display: flex;
+            //         flex-direction: column;
+            //         justify-content: center;
+            //         padding: 0 20px;
+
+            //         .description {
+            //             color: #fff;
+            //             text-transform: uppercase;
+            //             margin-top: 5px;
+            //             font-weight: 700;
+            //         }
+            //     }
+            // }
+
+            .health {
+                color: #27cc4e;
+            }
+            .mana {
+                color: #1c8aff;
+            }
+            .maelstrom {
+                color: #008fff;
+            }
+            .fury {
+                color: #8400ff;
+            }
+            .rage {
+                color: #ab0000;
+            }
+            .energy {
+                color: #cb9501;
+            }
+            .insanity {
+                color: #60f;
+            }
+            .runic-power {
+                color: #00bcde;
+            }
+            .intellect {
+                color: #d26cd1;
+            }
+            .agility {
+                color: #ffd955;
+            }
+            .stamina {
+                color: #ff8b2d;
+            }
+            .strength {
+                color: #f33232;
+            }
+            .critical-strike {
+                color: #e01c1c;
+            }
+            .haste {
+                color: #0ed59b;
+            }
+            .mastery {
+                color: #9256ff;
+            }
+            .versatility {
+                color: #bfbfbf;
+            }
+        }
+    }
+}

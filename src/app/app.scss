@@ -14,3 +14,116 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.content {
+    background-color: #1a0407;
+}
+
+.death {
+    color: #C41F3B;
+}
+.druid {
+    color: #FF7D0A;
+}
+.hunter {
+    color: #ABD473;
+}
+.demon {
+    color: #A330C9;
+}
+.mage {
+    color: #69CCF0;
+}
+.monk {
+    color: #00FF96;
+}
+.paladin {
+    color: #F58CBA;
+}
+.priest {
+    color: #FFFFFF;
+}
+.rogue {
+    color: #FFF569;
+}
+.shaman {
+    color: #0070DE;
+}
+.warlock {
+    color: #9482C9;
+}
+.warrior {
+    color: #C79C6E;
+}
+
+ion-menu {
+    .content {
+        background-color: #211510 !important;
+        border-left: 1px solid #352011;
+
+        a {
+            display: block;
+            padding: 10px 0;
+            cursor: pointer;
+            color: #f8b700;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            text-align: center;
+
+            &.activeHighlight {
+                color: #c69200;
+            }
+        }
+    }
+
+    .toolbar-background {
+        background: none !important;
+        border: none !important;
+    }
+
+    .menu-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px;
+    }
+
+    img {
+        display: block;
+        margin: 20px auto;
+    }
+}
+
+.card {
+    border: solid 1px #444;
+    background-image: url('/assets/img/background/leather-grey.jpg');
+    background-position: center center;
+    color: #fff;
+    border-radius: 0px;
+    background-color: #1a1a1a;
+}
+
+.modal-wrapper {
+
+    .modal-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 4px;
+    
+        .button {
+            background: transparent;
+            color: #f8b700;
+        }
+    }
+
+    .content {
+        background: #181818;
+        padding: 40px;
+
+        .scroll-content {
+            padding: 40px;
+        }
+    }
+}

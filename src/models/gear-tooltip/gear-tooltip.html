@@ -1,0 +1,78 @@
+<ion-buttons end class="modal-button">
+  <button ion-button icon-only (click)="closeModal()">
+    <ion-icon name="close"></ion-icon>
+  </button>
+</ion-buttons>
+
+<ion-content>
+  <div class="gear-item" [ngStyle]="{'border-color': item ? item.quality : '', 'background-image': item ? 'url(https://render-eu.worldofwarcraft.com/icons/56/' + item.icon + '.jpg)' : ''}"></div>
+
+  <span class="item-name" [ngStyle]="{'color': item ? item.quality : ''}">{{ item.name }}</span>
+  <span class="difficulty">{{ item.context }}</span>
+  <span class="tooltip-ilvl">Item Level {{ item.itemLevel }}</span>
+  <span class="transmog" *ngIf="item.tooltipParams.transmogItemName"><span>Transmogrified to:</span>{{ item.tooltipParams.transmogItemName }}</span>
+  <span class="bind">{{ ((item.itemBind == 1) ? 'Binds when picked up' : 'Binds when equipped') }}</span>
+  <span class="unique"></span>
+  <div class="tooltip-item">
+    <span class="slot-type">{{ item.inventoryType }}</span>
+    <span class="item-type" *ngIf="item.inventoryType != 'Back'">{{ item.itemSubClass }}</span>
+  </div>
+  <div class="weaponStats" *ngIf="item.weaponInfo">
+    <div class="weaponDamage-Speed">
+        <span class="weaponDamage">{{ item.weaponInfo.damage.min }} - {{ item.weaponInfo.damage.max }} Damage</span>
+        <span class="weaponSpeed">Speed {{ item.weaponInfo.weaponSpeed }}</span>
+    </div>
+    <span class="weaponPerSecond">({{ item.weaponInfo.dps }} damage per second)</span>
+  </div>
+  <div class="stats">
+    <span *ngIf="item.armor > 0">{{ item.armor }} Armour</span>
+    <ng-container *ngFor="let stat of item['stats']">
+      <span *ngIf="stat.stat == 71">+{{ stat.amount }} Strength, Agility or Intellect</span>
+      <span *ngIf="stat.stat == 72">+{{ stat.amount }} Strength or Agility</span>
+      <span *ngIf="stat.stat == 73">+{{ stat.amount }} Agility or Intellect</span>
+      <span *ngIf="stat.stat == 74">+{{ stat.amount }} Strength or Intellect</span>
+      <span *ngIf="stat.stat == 3">+{{ stat.amount }} Agility</span>
+      <span *ngIf="stat.stat == 4">+{{ stat.amount }} Strength</span>
+      <span *ngIf="stat.stat == 5">+{{ stat.amount }} Intellect</span>
+      <span *ngIf="stat.stat == 7">+{{ stat.amount }} Stamina</span>
+    </ng-container>
+    <span class="secondary-stats">
+      <ng-container *ngFor="let stat of item['stats']">
+        <span *ngIf="stat.stat == 32">+{{ stat.amount }} Critical Strike</span>
+        <span *ngIf="stat.stat == 36">+{{ stat.amount }} Haste</span>
+        <span *ngIf="stat.stat == 49">+{{ stat.amount }} Mastery</span>
+        <span *ngIf="stat.stat == 40">+{{ stat.amount }} Versatility</span>
+        <span *ngIf="stat.stat == 61">+{{ stat.amount }} Speed</span>
+        <span *ngIf="stat.stat == 62">+{{ stat.amount }} Leech</span>
+        <span *ngIf="stat.stat == 63">+{{ stat.amount }} Avoidance</span>
+        <span *ngIf="stat.stat == 64">Indestructible</span>
+      </ng-container>
+    </span>
+  </div>
+  <span class="ability" *ngIf="item.itemSpellTrigger && item.itemSpellDescription">
+    {{ item.itemSpellTrigger }}: {{ item.itemSpellDescription }}
+  </span>
+  <div class="gem-container" *ngIf="item.tooltipParams.gem0 && !item.weaponInfo">
+    <div class="socket">
+      <div class="gem" [ngStyle]="{'background-image': item ? 'url(https://render-eu.worldofwarcraft.com/icons/56/' + item.tooltipParams.gemIcon + '.jpg)' : ''}"></div>
+        <div class="frame"></div>
+    </div>
+    <span>{{ item.tooltipParams.gemInfo }}</span>
+  </div>
+  <span class="tierset" *ngIf="item.tooltipParams['set']">
+   {{ item.tooltipParams['set'].name }} ({{ item.tooltipParams['set'].length }}/6)
+    <!-- <div class="tieritems">
+      <span class="active">Juggernaut Breastplate</span>
+      <span>Juggernaut Cloak</span>
+      <span>Juggernaut Gauntlets</span>
+      <span class="active">Juggernaut Helm</span>
+      <span>Juggernaut Legplates</span>
+      <span>Juggernaut Pauldrons</span>
+    </div> -->
+  </span>
+  <span class="description" *ngIf="item.description">"{{ item.description }}"</span>
+  <span class="durability" *ngIf="item.maxDurability > 0">Durability {{ item.maxDurability }} / {{ item.maxDurability }}</span>
+  <span class="classes" *ngIf="item.allowableClasses">Classes: {{ item.allowableClasses }}</span>
+  <span class="lvl-requirement" *ngIf="item.requiredLevel > 0">Requires Level {{ item.requiredLevel }}</span>
+  <span class="price" *ngIf="item.priceGold > 0 || item.priceSilver > 0 || item.priceCopper > 0">Sell Price: {{ ((item.priceGold) ? item.priceGold : '') }} <div class="gold" *ngIf="item.priceGold"></div> {{ ((item.priceSilver) ? item.priceSilver : '') }} <div class="silver" *ngIf="item.priceSilver"></div> {{ ((item.priceCopper) ? item.priceCopper : '') }} <div class="copper"  *ngIf="item.priceCopper"></div></span>
+</ion-content>

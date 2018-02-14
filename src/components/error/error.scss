@@ -1,0 +1,33 @@
+.error {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+
+    .title {
+        font-weight: 700;
+        font-size: 22px;
+        text-align: center;
+    }
+
+    span {
+        margin-bottom: 20px;
+    }
+
+    button {
+        width: 50%;
+        background-color: #f8b700;
+        color: #211510;
+        padding: 10px;
+        font-weight: 700;
+        font-size: 13px;
+        text-align: center;
+
+        &:hover, &:active, &:focus {
+            background-color: #c69200 !important;
+        }
+    }
+}

@@ -1,0 +1,31 @@
+<ion-header>
+  <navbar [hideBackButton]="true" [profilebtn]="false" [menu]="false"></navbar>
+</ion-header>
+
+<ion-content padding>
+  <error [message]="error" (reload)="getCharacters()"></error>
+  <div *ngIf="!error">
+    <ion-list no-lines class="realm-list">
+      <ng-container *ngFor="let realm of realms; let i = index">
+          <ion-item (click)="toggleSection(i)" [ngClass]="{'realm-open': realm.open, 'realm-closed': !realm.open}">
+              <ion-icon item-left name="arrow-forward" *ngIf="!realm.open"></ion-icon>
+              <ion-icon item-left name="arrow-down" *ngIf="realm.open"></ion-icon>
+              <h2>{{ realm.realm }}</h2>
+          </ion-item>
+          <ion-item *ngIf="realm.open" class="character-block">
+              <ng-container *ngFor="let character of characters">
+                  <div *ngIf="character.realm == realm.realm" (click)="chooseCharacter(character.realm,character.name)" class="character-container">
+                    <div class="character">
+                      <ion-thumbnail item-left class="thumbnail">
+                        <img src="https://render-eu.worldofwarcraft.com/character/{{ character.thumbnail }}" class="thumbnail">
+                      </ion-thumbnail>
+                      <h2 class="{{ character.class.toLowerCase() }}">{{ character.name }}</h2>
+                    </div>
+                    <ion-icon item-right name="arrow-forward" class="arrow-forward"></ion-icon>
+                  </div>
+              </ng-container>
+          </ion-item>
+      </ng-container>
+    </ion-list>
+  </div>
+</ion-content>

@@ -1,0 +1,50 @@
+.realm-list {
+    margin: 0;
+}
+
+.realm-open {
+    background: #c69200;
+    margin-bottom: 0px;
+}
+
+.realm-closed {
+    background: #f8b700;
+    margin-bottom: 10px;
+
+    &:last-child {
+        margin-bottom: 0px;
+    }
+}
+
+.character-block {
+    margin-bottom: 10px;
+    border: 1px solid #444 !important;
+    background-color: #211510;
+    color: #fff;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.character-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .character {
+        display: flex;
+        align-items: center;
+
+        .thumbnail {
+            min-height: 56px;
+            min-width: 56px;
+            max-height: 56px;
+            max-width: 56px;
+        }
+    }
+
+    .arrow-forward {
+        margin: 0 !important;
+    }
+}

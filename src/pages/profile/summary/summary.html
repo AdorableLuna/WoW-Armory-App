@@ -1,0 +1,64 @@
+<ion-header>
+  <navbar [hideBackButton]="true" [profilebtn]="true" [menu]="true"></navbar>
+</ion-header>
+
+<ion-content padding>
+  <error [message]="error" (reload)="getData()"></error>
+  <div *ngIf="!error">
+    <ion-card>
+
+      <ion-card-content class="summary-container">
+        <div class="character-thumbnail">
+          <ion-img width="80" height="80" src="https://render-eu.worldofwarcraft.com/character/{{ stats?.thumbnail }}"></ion-img>
+        </div>
+        <div class="summary-profile">
+          <div class="summary-profile-nameArea">
+            <div class="summary-profile-nameTitle">
+              <div class="summary-profile-name-lvl">
+                <span class="name {{ stats?.class.toLowerCase() }}">{{ stats?.name }}</span>
+                <span class="level">lvl {{ stats?.level }}</span>
+              </div>
+              <ng-container *ngFor="let title of stats?.titles">
+                <span *ngIf="title.selected" class="title">{{ title.name }}</span>
+              </ng-container>
+            </div>
+            <div class="summary-profile-stats">
+              <svg viewBox="0 0 64 64">
+                <use xlink:href="assets/img/character/stats/achievement-shield.svg#achievement-shield" />
+              </svg>
+              <span class="achievement-points">{{ stats?.achievementPoints }}</span>
+              <svg viewBox="0 0 64 64">
+                <use xlink:href="assets/img/character/stats/swords.svg#swords" />
+              </svg>
+              <span class="ilvl">{{ stats?.items.averageItemLevelEquipped }} ilvl</span>
+            </div>
+            <div class="characterheader-details">
+              <span><span class="character-block" class="guild">❮{{ stats?.guild.name }}❯</span> {{ stats?.realm }}</span>
+            </div>
+          </div>
+        </div>
+      </ion-card-content>
+
+    </ion-card>
+
+    <div class="stats-container">
+        <div class="stats">
+            <div class="stat-container">
+                <ng-container *ngFor="let stat of characterStats">
+                    <div class="stat {{ stat.type }}">
+                        <svg viewBox="0 0 64 64">
+                            <use attr.xlink:href="/assets/img/character/stats/{{ stat.type }}.svg#{{ stat.type }}" />
+                        </svg>
+
+                        <div class="values">
+                            <span class="value">{{ stat.value }}</span>
+                            <span class="description">{{ stat.type.replace('-', ' ') }}</span>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+  </div>
+
+</ion-content>

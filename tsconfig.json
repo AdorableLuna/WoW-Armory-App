@@ -23,6 +23,8 @@
   ],
   "compileOnSave": false,
   "atom": {
-    "rewriteTsconfig": false
+    "rewriteTsconfig": false,
+    "experimentalDecorators": true,
+    "allowJs": true
   }
 }

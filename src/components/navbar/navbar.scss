@@ -1,0 +1,45 @@
+.toolbar {
+    min-height: 48px;
+
+    .back-button {
+        color: #f8b700 !important;
+    }
+
+    .character-list-button {
+        background-color: transparent;
+        color: #f8b700 !important;
+        outline: none;
+
+        &:hover {
+            background-color: transparent;
+        }
+    }
+
+    .toolbar-background {
+        background: url('/assets/img/background/toolbar-background.jpg');
+        background-size: auto 100%;
+        border-bottom: solid 1px #352011;
+    }
+
+    ion-title {
+        img {
+            height: 48px;
+            width: auto;
+
+            @media (max-width: 899px) {
+                height: 42px;
+            }
+        }
+    }
+
+    .toolbar-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+    }
+
+    .bar-button {
+        color: #f8b700 !important;
+    }
+}

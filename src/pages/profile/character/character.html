@@ -1,0 +1,41 @@
+<ion-header>
+  <navbar [hideBackButton]="false" [profilebtn]="false" [menu]="true"></navbar>
+</ion-header>
+
+<ion-content padding [ngStyle]="{'background-image': 'url(https://render-eu.worldofwarcraft.com/character/' + items?.thumbnail.replace('avatar', 'main') + ')'}">
+  <error [message]="error" (reload)="getData()"></error>
+  <div *ngIf="!error" class="character-ilvl">
+    <div class="equipped">
+      Equipped: 
+      <svg viewBox="0 0 64 64">
+        <use xlink:href="assets/img/character/stats/swords.svg#swords" />
+      </svg>
+      {{ items?.items.averageItemLevelEquipped }}
+    </div>
+    <div class="inBags">
+      In bags: 
+      <svg viewBox="0 0 64 64">
+        <use xlink:href="assets/img/character/stats/swords.svg#swords" />
+      </svg>
+      {{ items?.items.averageItemLevel }}
+    </div>
+  </div>
+  <div *ngIf="!error" class="gear">
+    <div class="gear-left">
+      <ng-container *ngFor="let slot of slots['slotsLeft']">
+        <div class="gear-item {{ slot['name'] }}" (click)="openModal(slot['item'])" [ngStyle]="{'border-color': slot['item'] ? slot['item'].quality : '', 'background-image': slot['item'] ? 'url(https://render-eu.worldofwarcraft.com/icons/56/' + slot['item'].icon + '.jpg)' : ''}"></div>
+      </ng-container>
+    </div>
+    <div class="gear-bottom">
+      <ng-container *ngFor="let slot of slots['slotsBottom']">
+        <div class="gear-item {{ slot['name'] }}" (click)="openModal(slot['item'])" [ngStyle]="{'border-color': slot['item'] ? slot['item'].quality : '', 'background-image': slot['item'] ? 'url(https://render-eu.worldofwarcraft.com/icons/56/' + slot['item'].icon + '.jpg)' : ''}"></div>
+      </ng-container>
+    </div>
+    <div class="gear-right">
+      <ng-container *ngFor="let slot of slots['slotsRight']">
+        <div class="gear-item {{ slot['name'] }}" (click)="openModal(slot['item'])" [ngStyle]="{'border-color': slot['item'] ? slot['item'].quality : '', 'background-image': slot['item'] ? 'url(https://render-eu.worldofwarcraft.com/icons/56/' + slot['item'].icon + '.jpg)' : ''}"></div>
+      </ng-container>
+    </div>
+  </div>
+  
+</ion-content>

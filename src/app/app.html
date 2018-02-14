@@ -1,1 +1,21 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu side="right" [content]="content" persistent="true">
+  <ion-header>
+      <ion-toolbar>
+            <img src="/assets/img/background/wow_title.png">
+            <ion-buttons end class="menu-button">
+                <button ion-button icon-only menuClose>
+                    <ion-icon name="close"></ion-icon>
+                </button>
+            </ion-buttons>
+      </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <a menuClose *ngFor="let p of pages" [class.activeHighlight]="checkActive(p)" (click)="openPage(p)">
+        {{ p.title }}
+    </a>
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

@@ -1,0 +1,148 @@
+.modal-wrapper {
+
+    .content {
+        .gear-item {
+            margin: 0 0 20px 0;
+        }
+    
+        span {
+            display: block;
+            margin: 5px 0;
+            font-size: 13px;
+            color: #fff;
+        }
+    
+        .item-name {
+            font-size: 16px;
+        }
+    
+        .difficulty {
+            color: #00ff00;
+        }
+    
+        .tooltip-ilvl {
+            color: #ffd100;
+        }
+    
+        .transmog {
+            color: #ff80ff;
+    
+            span {
+                display: block;
+                color: #ff80ff;
+            }
+        }
+    
+        .tooltip-item {
+            display: flex;
+            justify-content: space-between;
+            margin: -5px 0;
+        }
+
+        .weaponStats {
+            .weaponDamage-Speed {
+                display: flex;
+                justify-content: space-between;
+            }
+    
+            .weaponPerSecond {
+                margin: 0;
+            }
+        }
+    
+        .stats {
+            .secondary-stats {
+                span {
+                    color: #0f0;
+                }
+            }
+        }
+
+        .ability {
+            color: #1eff00;
+        }
+
+        .gem-container {
+            display: flex;
+            align-items: center;
+
+            .socket {
+                position: relative;
+                height: 16px;
+                width: 16px;
+    
+                .gem {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                }
+    
+                .frame {
+                    background-image: url(/assets/img/background/ItemSocket-frame.png);
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                }
+            }
+
+            span {
+                margin: 0 0 0 4px;
+            }
+        }
+        .tierset {
+            color: #ffd100;
+            margin-top: 10px;
+    
+            .tieritems > span {
+                color: grey;
+                padding-left: 10px;
+    
+                &.active {
+                    color: #FFFF98;
+                }
+            }
+        }
+
+        .description {
+            color: #ffd100;
+        }
+    
+        .durability {
+            margin-top: 20px;
+        }
+    
+        .price {
+            display: flex;
+            margin-top: 15px;
+    
+            div {
+                margin-top: 2px;
+                margin-left: 2px;
+                height: 18px;
+                width: 18px;
+            }
+    
+            .gold {
+                background: url('/assets/img/price/gold.gif') no-repeat;
+            }
+    
+            .silver {
+                background: url('/assets/img/price/silver.gif') no-repeat;
+            }
+    
+            .copper {
+                background: url('/assets/img/price/copper.gif') no-repeat;
+            }
+        }
+    }
+}

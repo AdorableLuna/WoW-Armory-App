@@ -1,0 +1,5 @@
+<div class="error" *ngIf="message">
+  <span class="title">Something went wrong! Please try again.</span>
+  <span>Details: {{ message?.detail }}</span>
+  <button ion-button (click)="reload">Reload</button>
+</div>
