@@ -26,7 +26,7 @@ export class SummaryPage {
     getData() {
         this.error = undefined;
         
-        this.armoryService.getCharacterData(this.realm, this.name, 'guild,items,stats,talents,titles').then(val => {
+        this.armoryService.getCharacterData(this.realm, this.name, 'guild,items,stats,titles').then(val => {
             this.stats = val;
 
             this.characterStats = [
@@ -39,6 +39,14 @@ export class SummaryPage {
                 { type: "mastery", value: val['stats']['mastery'].toFixed(0) + '%' },
                 { type: "versatility", value: val['stats']['versatilityDamageDoneBonus'].toFixed(0) + '%' }
             ];
+
+            this.armoryService.getResourcesData('talents').then(talent => {
+                this.stats.resources = { 'talents': talent[val['classId']] };
+            }, err => {
+                this.error = { code: err.error.code, detail: err.error.detail };
+            });
+
+            localStorage.setItem('character_data', JSON.stringify(val));
         }, err => {
             this.error = { code: err.error.code, detail: err.error.detail };
         });

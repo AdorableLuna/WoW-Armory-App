@@ -6,6 +6,7 @@ import 'rxjs/Rx'
 export class ArmoryService {
     private baseUrl: string;
     private access_token: string;
+    private api_key: string;
 
     public standardData: any;
 
@@ -14,6 +15,7 @@ export class ArmoryService {
     ) {
         this.baseUrl = 'https://eu.api.battle.net/wow/'
         this.access_token = localStorage.getItem('access_token')
+        this.api_key = 'e4yc2z5sh6fbqbst26yxpvt73yek569m'
     }
 
     getCharacters() {
@@ -22,7 +24,7 @@ export class ArmoryService {
 
     getCharacterData(realm, character, fields) {
         return new Promise((resolve, reject) => {
-            this.http.get(this.baseUrl + `character/${realm}/${character}?fields=${fields}&locale=en_GB&apikey=e4yc2z5sh6fbqbst26yxpvt73yek569m`)
+            this.http.get(this.baseUrl + `character/${realm}/${character}?fields=${fields}&locale=en_GB&apikey=${this.api_key}`)
             .subscribe(val => {
 
                 if (val['titles']) {
@@ -42,6 +44,7 @@ export class ArmoryService {
                     }
                 }
 
+                val['classId'] = val['class'];
                 val['class'] = this.getClassById(val['class']);
 
                 if (val['talents']) {
@@ -62,7 +65,18 @@ export class ArmoryService {
 
     getItemData(itemid) {
         return new Promise((resolve, reject) => {
-            this.http.get(this.baseUrl + `item/${itemid}?locale=en_GB&apikey=e4yc2z5sh6fbqbst26yxpvt73yek569m`)
+            this.http.get(this.baseUrl + `item/${itemid}?locale=en_GB&apikey=${this.api_key}`)
+            .subscribe(val => {
+                resolve(val);
+            }, err => {
+                reject(err);
+            });
+        })
+    }
+
+    getResourcesData(resource) {
+        return new Promise((resolve, reject) => {
+            this.http.get(this.baseUrl + `data/${resource}?locale=en_GB&apikey=${this.api_key}`)
             .subscribe(val => {
                 resolve(val);
             }, err => {

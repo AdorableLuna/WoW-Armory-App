@@ -52,7 +52,7 @@
   <span class="ability" *ngIf="item.itemSpellTrigger && item.itemSpellDescription">
     {{ item.itemSpellTrigger }}: {{ item.itemSpellDescription }}
   </span>
-  <div class="gem-container" *ngIf="item.tooltipParams.gem0 && !item.weaponInfo">
+  <div class="gem-container" *ngIf="item.tooltipParams.gem0 && !item.weaponInfo && item.inventoryType != 'Shield'">
     <div class="socket">
       <div class="gem" [ngStyle]="{'background-image': item ? 'url(https://render-eu.worldofwarcraft.com/icons/56/' + item.tooltipParams.gemIcon + '.jpg)' : ''}"></div>
         <div class="frame"></div>

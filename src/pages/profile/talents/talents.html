@@ -1,11 +1,10 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      About
-    </ion-title>
-  </ion-navbar>
+  <navbar [hideBackButton]="false" [profilebtn]="false" [menu]="true"></navbar>
 </ion-header>
 
 <ion-content padding>
-
+  <error [message]="error" (reload)="getData()"></error>
+  <div *ngIf="!error">
+    
+  </div>
 </ion-content>

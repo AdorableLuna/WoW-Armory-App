@@ -17,8 +17,6 @@ export class GearTooltipPage {
   }
 
   closeModal() {
-    console.log(this.item);
     this.viewCtrl.dismiss();
   }
-
 }

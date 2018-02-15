@@ -11,7 +11,7 @@ import { CharacterPage } from '../pages/profile/character/character';
 import { TalentsPage } from '../pages/profile/talents/talents';
 import { TabsPage } from '../pages/tabs/tabs';
 
-import { GearTooltipPage } from '../models/gear-tooltip/gear-tooltip';
+import { GearTooltipPage } from '../modals/gear-tooltip/gear-tooltip';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';

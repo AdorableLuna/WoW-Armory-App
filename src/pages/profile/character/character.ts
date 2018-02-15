@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { ArmoryService } from '../../../app/services/armory.service';
-import { GearTooltipPage } from './../../../models/gear-tooltip/gear-tooltip';
+import { GearTooltipPage } from './../../../modals/gear-tooltip/gear-tooltip';
 
 @Component({
     selector: 'character',
     templateUrl: 'character.html'
 })
 export class CharacterPage {
-    error: Object;
     realm: string;
     name: string;
     items: any;
@@ -22,8 +21,6 @@ export class CharacterPage {
     ) {
         this.realm = navParams.get('realm');
         this.name = navParams.get('name');
-        this.getData();
-
 
         this.slots = new Array();
         this.slots['slotsLeft'] = 
@@ -109,26 +106,22 @@ export class CharacterPage {
                 "item": null,
             }
         ];
+
+        this.getData();
     }
     
     getData() {
-        this.error = undefined;
-        
-        this.armoryService.getCharacterData(this.realm, this.name, 'items').then(val => {
-            this.items = val;
-            for (var slot in this.slots) {
-                for (var item in this.slots[slot]) {
-                    for (var items in val['items']) {
-                        if (items == this.slots[slot][item].name) {
-                            this.slots[slot][item].item = val['items'][items];
-                            this.slots[slot][item]['item'].quality = this.armoryService.getQuality(val['items'][items]['quality'])
-                        }
+        this.items = JSON.parse(localStorage.getItem('character_data'));
+        for (var slot in this.slots) {
+            for (var item in this.slots[slot]) {
+                for (var items in this.items['items']) {
+                    if (items == this.slots[slot][item].name) {
+                        this.slots[slot][item].item = this.items['items'][items];
+                        this.slots[slot][item]['item'].quality = this.armoryService.getQuality(this.items['items'][items]['quality'])
                     }
                 }
             }
-        }, err => {
-            this.error = { code: err.error.code, detail: err.error.detail };
-        });
+        }
     }
 
     openModal(item) {
