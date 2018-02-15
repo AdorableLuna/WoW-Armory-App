@@ -23,17 +23,21 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(
+    platform: Platform, 
+    statusBar: StatusBar, 
+    splashScreen: SplashScreen
+  ) {
     platform.ready().then(() => {
       this.pages = [
         { title: 'Summary', component: SummaryPage },
         { title: 'Gear', component: CharacterPage },
         { title: 'Talents', component: TalentsPage },
-        { title: 'Achievements', component: CharacterPage },
-        { title: 'Collections', component: CharacterPage },
-        { title: 'Raid Progression', component: CharacterPage },
-        { title: 'Player vs Player', component: CharacterPage },
-        { title: 'Reputation', component: CharacterPage }
+        // { title: 'Achievements', component: CharacterPage },
+        // { title: 'Collections', component: CharacterPage },
+        // { title: 'Raid Progression', component: CharacterPage },
+        // { title: 'Player vs Player', component: CharacterPage },
+        // { title: 'Reputation', component: CharacterPage }
       ]
 
       this.activePage = this.pages[0];
@@ -46,12 +50,20 @@ export class MyApp {
 
   openPage(page) {
     this.nav.push(page.component, {
-      realm: localStorage.getItem('realm'), name: localStorage.getItem('name')
+      realm: localStorage.getItem('realm'), name: localStorage.getItem('name'), previousPage: this.nav.last()
     });
     this.activePage = page;
   }
 
   checkActive(page) {
     return page == this.activePage;
+  }
+
+  getActive(page) {
+    for (let p in this.pages) {
+      if (this.pages[p].component.name == page.component.name) {
+        this.activePage = this.pages[p];
+      }
+    }
   }
 }

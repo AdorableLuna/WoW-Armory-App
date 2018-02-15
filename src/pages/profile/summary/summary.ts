@@ -4,7 +4,7 @@ import { ArmoryService } from '../../../app/services/armory.service';
 
 @Component({
   selector: 'summary',
-  templateUrl: 'summary.html',
+  templateUrl: 'summary.html'
 })
 export class SummaryPage {
     error: Object;
