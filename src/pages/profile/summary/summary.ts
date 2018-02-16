@@ -26,7 +26,7 @@ export class SummaryPage {
     getData() {
         this.error = undefined;
         
-        this.armoryService.getCharacterData(this.realm, this.name, 'guild,items,stats,titles').then(val => {
+        this.armoryService.getCharacterData(this.realm, this.name, 'guild,items,stats,talents,titles').then(val => {
             this.stats = val;
 
             this.characterStats = [
@@ -40,8 +40,57 @@ export class SummaryPage {
                 { type: "versatility", value: val['stats']['versatilityDamageDoneBonus'].toFixed(0) + '%' }
             ];
 
-            this.armoryService.getResourcesData('talents').then(talent => {
-                this.stats.resources = { 'talents': talent[val['classId']] };
+            this.armoryService.getResourcesData('talents').then(talents => {
+                this.stats.resources = { 'talents': talents[val['classId']] };
+                
+                let talentArray = [];
+
+                for (let talentRow in talents[val['classId']]['talents']) { //  row
+                    talentArray[talentRow] = [];
+                    
+                    LoopTalent:
+                    for (let talent in talents[val['classId']]['talents'][talentRow]) { //  column
+                        for (let specTalent in talents[val['classId']]['talents'][talentRow][talent]) { //  talent
+
+                            if (talents[val['classId']]['talents'][talentRow][talent][specTalent]['spec']) {
+                                if (talents[val['classId']]['talents'][talentRow][talent][specTalent]['spec']['name'] == this.stats.spec) {
+
+                                    var found = null;
+                                    for (let talentArrayRow in talentArray[talentRow]) {
+                                        if (talentArray[talentRow][talentArrayRow]['tier'] == talents[val['classId']]['talents'][talentRow][talent][specTalent]['tier'] && talentArray[talentRow][talentArrayRow]['column'] == talents[val['classId']]['talents'][talentRow][talent][specTalent]['column']) {
+                                            talentArray[talentRow][talentArrayRow] = talents[val['classId']]['talents'][talentRow][talent][specTalent];
+                                            found = true;
+                                            break;
+                                        }
+                                    }
+
+                                    if (found) {
+                                        continue LoopTalent;
+                                    }
+                                    else {
+                                        talentArray[talentRow].push(talents[val['classId']]['talents'][talentRow][talent][specTalent]); 
+                                    }
+                                }
+                            }
+
+                            else if (!talents[val['classId']]['talents'][talentRow][talent][specTalent]['spec']) {
+
+                                var found = null;
+                                for (let talentArrayRow in talentArray[talentRow]) {
+                                    if (talentArray[talentRow][talentArrayRow]['tier'] == talents[val['classId']]['talents'][talentRow][talent][specTalent]['tier'] && talentArray[talentRow][talentArrayRow]['column'] == talents[val['classId']]['talents'][talentRow][talent][specTalent]['column']) {
+                                        found = true;
+                                        break;
+                                    }
+                                }
+
+                                if (!found) {
+                                    talentArray[talentRow].push(talents[val['classId']]['talents'][talentRow][talent][specTalent]);
+                                }
+                            }
+                        }
+                    }
+                }
+                this.stats.allTalents = talentArray;
             }, err => {
                 this.error = { code: err.error.code, detail: err.error.detail };
             });
