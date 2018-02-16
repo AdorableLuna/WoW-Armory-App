@@ -1,0 +1,16 @@
+<ion-buttons end class="modal-button">
+  <button ion-button icon-only (click)="closeModal()">
+    <ion-icon name="close"></ion-icon>
+  </button>
+</ion-buttons>
+
+<ion-content class="talent-tooltip">
+  <div class="talent-header">
+    <div class="talent-icon" [ngStyle]="{'background-image': talent ? 'url(https://render-eu.worldofwarcraft.com/icons/56/' + talent.spell.icon + '.jpg)' : ''}"></div>
+
+    <span class="talent-name">{{ talent.spell.name }}</span>
+  </div>
+
+  <span class="castTime">{{ talent.spell.castTime }} </span>
+  <span class="description">{{ talent.spell.description }} </span>
+</ion-content>

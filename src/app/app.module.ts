@@ -12,6 +12,7 @@ import { TalentsPage } from '../pages/profile/talents/talents';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { GearTooltipPage } from '../modals/gear-tooltip/gear-tooltip';
+import { TalentTooltipPage } from './../modals/talent-tooltip/talent-tooltip';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -32,6 +33,7 @@ import { NavbarComponent } from '../components/navbar/navbar';
     TalentsPage,
     TabsPage,
     GearTooltipPage,
+    TalentTooltipPage,
     ProfileButton,
     ErrorMessageComponent,
     NavbarComponent
@@ -53,6 +55,7 @@ import { NavbarComponent } from '../components/navbar/navbar';
     TalentsPage,
     TabsPage,
     GearTooltipPage,
+    TalentTooltipPage,
     ProfileButton,
     ErrorMessageComponent,
     NavbarComponent

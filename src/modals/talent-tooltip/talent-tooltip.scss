@@ -1,0 +1,28 @@
+.modal-wrapper {
+
+    .talent-tooltip {
+        .talent-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 15px;
+    
+            .talent-icon {
+                height: 32px;
+                width: 32px;
+                margin-right: 20px;
+                border: solid 1.2px #444;
+                background-color: #000;
+                background-size: cover;
+            }
+        }
+    
+        .castTime {
+            margin-bottom: 15px;
+        }
+    
+        .description {
+            color: #ebdec2;
+        }
+    }
+}

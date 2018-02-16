@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { ArmoryService } from '../../../app/services/armory.service';
+import { TalentTooltipPage } from './../../../modals/talent-tooltip/talent-tooltip';
 import * as _ from 'lodash';
 
 @Component({
@@ -13,7 +14,8 @@ export class TalentsPage {
 
     constructor(
         public navCtrl: NavController,
-        private armoryService: ArmoryService
+        private armoryService: ArmoryService,
+        public modalCtrl: ModalController
     ) {
         this.talents = JSON.parse(localStorage.getItem('character_data'));
 
@@ -54,5 +56,12 @@ export class TalentsPage {
                 });
             });
         });
+    }
+
+    openModal(talent) {
+        if (!talent) return;
+
+        let gearModal = this.modalCtrl.create(TalentTooltipPage, { talent: talent });
+        gearModal.present();
     }
 }
