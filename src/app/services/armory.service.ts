@@ -85,58 +85,6 @@ export class ArmoryService {
         })
     }
 
-    sortTalents(talents, val, spec) {
-        let talentArray = [];
-
-        for (let talentRow in talents[val['classId']]['talents']) { //  row
-            talentArray[talentRow] = [];
-            
-            LoopTalent:
-            for (let talent in talents[val['classId']]['talents'][talentRow]) { //  column
-                for (let specTalent in talents[val['classId']]['talents'][talentRow][talent]) { //  talent
-
-                    if (talents[val['classId']]['talents'][talentRow][talent][specTalent]['spec']) {
-                        if (talents[val['classId']]['talents'][talentRow][talent][specTalent]['spec']['name'] == spec) {
-
-                            var found = null;
-                            for (let talentArrayRow in talentArray[talentRow]) {
-                                if (talentArray[talentRow][talentArrayRow]['tier'] == talents[val['classId']]['talents'][talentRow][talent][specTalent]['tier'] && talentArray[talentRow][talentArrayRow]['column'] == talents[val['classId']]['talents'][talentRow][talent][specTalent]['column']) {
-                                    talentArray[talentRow][talentArrayRow] = talents[val['classId']]['talents'][talentRow][talent][specTalent];
-                                    found = true;
-                                    break;
-                                }
-                            }
-
-                            if (found) {
-                                continue LoopTalent;
-                            }
-                            else {
-                                talentArray[talentRow].push(talents[val['classId']]['talents'][talentRow][talent][specTalent]); 
-                            }
-                        }
-                    }
-
-                    else if (!talents[val['classId']]['talents'][talentRow][talent][specTalent]['spec']) {
-
-                        var found = null;
-                        for (let talentArrayRow in talentArray[talentRow]) {
-                            if (talentArray[talentRow][talentArrayRow]['tier'] == talents[val['classId']]['talents'][talentRow][talent][specTalent]['tier'] && talentArray[talentRow][talentArrayRow]['column'] == talents[val['classId']]['talents'][talentRow][talent][specTalent]['column']) {
-                                found = true;
-                                break;
-                            }
-                        }
-
-                        if (!found) {
-                            talentArray[talentRow].push(talents[val['classId']]['talents'][talentRow][talent][specTalent]);
-                        }
-                    }
-                }
-            }
-        }
-
-        return talentArray;
-    }    
-
     getClassById(classId) {
         switch (classId) {
             case 1:
