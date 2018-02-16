@@ -3,8 +3,44 @@
 </ion-header>
 
 <ion-content padding>
-  <error [message]="error" (reload)="getData()"></error>
-  <div *ngIf="!error">
-    
+  <div>
+    <div class="specs">
+      <div class="specIcon" *ngFor="let spec of talents['talents']" (click)="changeSpec(spec)" [ngStyle]="{'opacity': ((spec.spec.name == activeSpec.spec.name) ? '1' : '0.4'), 'background-image': 'url(https://render-eu.worldofwarcraft.com/icons/56/' + spec?.spec.icon + '.jpg)'}"></div>
+    </div>
+
+    <ion-card class="spec-info">
+
+      <ion-card-content>
+
+        <div class="spec-header">
+            <div class="specIcon" [ngStyle]="{'background-image': 'url(https://render-eu.worldofwarcraft.com/icons/56/' + activeSpec.spec.icon + '.jpg)'}"></div>
+            <span class="specName">{{ activeSpec.spec.name }}</span>
+        </div>
+
+        <span class="specDescription">{{ activeSpec.spec.description }}</span>
+
+      </ion-card-content>
+      
+    </ion-card>
+
+    <ion-card class="talents">
+
+      <ion-card-content>
+
+
+        <ng-container *ngFor="let spec of talents['allTalents']">
+          <ng-container *ngIf="spec.name == activeSpec.spec.name">
+            <div class="talentRow" *ngFor="let row of spec;  let i = index">
+                <span class="level">{{ (15 * (i + 1) == 105) ? 100 : 15 * (i + 1) }}</span>
+                <div class="talentColumn">
+                    <div class="specIcon" *ngFor="let talent of row"  [ngStyle]="{'opacity': ((talent.selected) ? '1' : '0.4'), 'background-image': 'url(https://render-eu.worldofwarcraft.com/icons/56/' + talent.spell.icon + '.jpg)'}"></div>
+                </div>
+            </div>
+          </ng-container>
+        </ng-container>
+
+      </ion-card-content>
+      
+    </ion-card>
   </div>
 </ion-content>
