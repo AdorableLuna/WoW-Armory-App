@@ -1,0 +1,215 @@
+page-collections {
+    .scroll-content {
+        padding-bottom: 0 !important;
+    }
+}
+
+.collections-nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+
+    .collections-nav-item {
+        border-bottom: solid 1px rgba(255,255,255,.2);
+        cursor: pointer;
+
+        &:first-child {
+            margin-right: 15px;
+        }
+
+        .pets, .mounts {
+            color: #f8b700;
+            font-size: 14.4px;
+            font-weight: 700;
+            padding: 8px 0;
+            border-bottom-color: #f8b700;
+
+            &.active-tab, &:hover {
+                color: #fff;
+                border-bottom: 3px solid #f8b700;
+            }
+        }
+    }
+}
+
+.battle-pet-slots-container {
+    .battle-pet-slots-header {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .battle-pet-slots {
+        display: flex;
+        flex-wrap: wrap;
+        padding-bottom: 40px;
+        margin-bottom: 40px;
+        border-bottom: 1px solid rgba(255,255,255,.25);
+
+        .battle-pet-slot {
+            width: 47%;
+            border: solid 1px #444;
+            background-color: #181818;
+            cursor: pointer;
+
+            &:first-child {
+                margin-right: 10px;
+            }
+            &:nth-child(2) {
+                margin-left: auto;
+            }
+            &:nth-child(3) {
+                margin-top: 20px;
+            }
+
+            &:hover {
+                border-color: #f8b700;
+            }
+
+            .battle-pet-slot-info {
+                padding: 20px;
+
+                .battle-pet-slot-image {
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    width: 100%;
+                    padding-top: 100%;
+                }
+
+                .battle-pet-slot-name-container {
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 4px;
+
+                    .battle-pet-slot-name {
+                        display: flex;
+                        flex-direction: column;
+                        font-size: 15px;
+                        font-weight: 400;
+                        text-align: center;
+
+                        .battle-pet-slot-name-favorite {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            color: #aaa;
+                            margin: 5px 0px;
+
+                            svg {
+                                height: 14px;
+                                width: 14px;
+                                fill: currentColor;
+                            }
+                        }
+                    }
+                }
+
+                .battle-pet-slot-lvl-container {
+                    display: flex;
+                    justify-content: center;
+
+                    .battle-pet-slot-lvl {
+                        color: #fff;
+                        font-size: 10px;
+                        font-weight: 700;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.collection-container {
+    .collection-header {
+        display: flex;
+        align-items: center;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 20px;
+
+        .collection-header-collected {
+            font-size: 10.8px;
+            font-weight: 400;
+            color: #b1997f;
+            padding-left: 10px;
+        }
+    }
+
+    .collection {
+        display: flex;
+        flex-wrap: wrap;
+
+        .collection-slot {
+            width: 47%;
+            margin-bottom: 20px;
+            border: solid 1px #444;
+            background-color: #181818;
+            cursor: pointer;
+
+            &:first-child, &:nth-child(0n+1) {
+                margin-right: 10px;
+            }
+
+            &:nth-child(2n) {
+                margin-left: auto;
+            }
+
+            &:hover {
+                border-color: #f8b700;
+            }
+
+            .collection-slot-info {
+                padding: 20px;
+
+                .collection-slot-image {
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    width: 100%;
+                    padding-top: 100%;
+                }
+
+                .collection-slot-name-container {
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 4px;
+
+                    .collection-slot-name {
+                        display: flex;
+                        font-size: 15px;
+                        font-weight: 400;
+                        text-align: center;
+
+                        .collection-slot-name-favorite {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            color: #aaa;
+
+                            svg {
+                                height: 14px;
+                                width: 14px;
+                                fill: currentColor;
+                                margin-left: 8px;
+                            }
+                        }
+                    }
+                }
+
+                .collection-slot-lvl-container {
+                    display: flex;
+                    justify-content: center;
+
+                    .collection-slot-lvl {
+                        color: #fff;
+                        font-size: 10px;
+                        font-weight: 700;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+        }
+    }
+}

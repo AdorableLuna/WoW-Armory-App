@@ -3,7 +3,7 @@
 </ion-header>
 
 <ion-content padding>
-  <error [message]="error" (reload)="getCharacters()"></error>
+  <error [message]="error" (click)="getCharacters()"></error>
   <div *ngIf="!error">
     <ion-list no-lines class="realm-list">
       <ng-container *ngFor="let realm of realms; let i = index">

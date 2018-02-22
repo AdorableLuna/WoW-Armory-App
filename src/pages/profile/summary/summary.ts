@@ -26,7 +26,7 @@ export class SummaryPage {
     getData() {
         this.error = undefined;
         
-        this.armoryService.getCharacterData(this.realm, this.name, 'guild,items,stats,talents,titles').then(val => {
+        this.armoryService.getCharacterData(this.realm, this.name, 'guild,items,mounts,pets,petSlots,stats,talents,titles').then(val => {
             this.stats = val;
             this.stats.talents = val['talents'].filter(spec => spec['spec']);
 

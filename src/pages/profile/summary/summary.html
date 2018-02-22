@@ -3,7 +3,7 @@
 </ion-header>
 
 <ion-content padding>
-  <error [message]="error" (reload)="getData()"></error>
+  <error [message]="error" (click)="getData()"></error>
   <div *ngIf="!error">
     <ion-card>
 
@@ -47,7 +47,7 @@
                 <ng-container *ngFor="let stat of characterStats">
                     <div class="stat {{ stat.type }}">
                         <svg viewBox="0 0 64 64">
-                            <use attr.xlink:href="/assets/img/character/stats/{{ stat.type }}.svg#{{ stat.type }}" />
+                            <use attr.xlink:href="assets/img/character/stats/{{ stat.type }}.svg#{{ stat.type }}" />
                         </svg>
 
                         <div class="values">

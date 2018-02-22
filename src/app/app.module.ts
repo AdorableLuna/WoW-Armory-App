@@ -9,7 +9,7 @@ import { CharactersPage } from '../pages/characters/characters';
 import { SummaryPage } from '../pages/profile/summary/summary';
 import { CharacterPage } from '../pages/profile/character/character';
 import { TalentsPage } from '../pages/profile/talents/talents';
-import { TabsPage } from '../pages/tabs/tabs';
+import { CollectionsPage } from './../pages/profile/collections/collections';
 
 import { GearTooltipPage } from '../modals/gear-tooltip/gear-tooltip';
 import { TalentTooltipPage } from './../modals/talent-tooltip/talent-tooltip';
@@ -31,7 +31,7 @@ import { NavbarComponent } from '../components/navbar/navbar';
     SummaryPage,
     CharacterPage,
     TalentsPage,
-    TabsPage,
+    CollectionsPage,
     GearTooltipPage,
     TalentTooltipPage,
     ProfileButton,
@@ -53,7 +53,7 @@ import { NavbarComponent } from '../components/navbar/navbar';
     SummaryPage,
     CharacterPage,
     TalentsPage,
-    TabsPage,
+    CollectionsPage,
     GearTooltipPage,
     TalentTooltipPage,
     ProfileButton,

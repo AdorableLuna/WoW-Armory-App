@@ -8,6 +8,7 @@ import { CharactersPage } from '../pages/characters/characters';
 import { SummaryPage } from '../pages/profile/summary/summary';
 import { CharacterPage } from '../pages/profile/character/character';
 import { TalentsPage } from '../pages/profile/talents/talents';
+import { CollectionsPage } from './../pages/profile/collections/collections';
 
 import { ArmoryService } from './services/armory.service';
 
@@ -34,7 +35,7 @@ export class MyApp {
         { title: 'Gear', component: CharacterPage },
         { title: 'Talents', component: TalentsPage },
         // { title: 'Achievements', component: CharacterPage },
-        // { title: 'Collections', component: CharacterPage },
+        { title: 'Collections', component: CollectionsPage },
         // { title: 'Raid Progression', component: CharacterPage },
         // { title: 'Player vs Player', component: CharacterPage },
         // { title: 'Reputation', component: CharacterPage }

@@ -1,0 +1,66 @@
+<ion-header>
+  <navbar [hideBackButton]="false" [profilebtn]="false" [menu]="true"></navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div class="collections-nav">
+    <div class="collections-nav-item">
+        <div class="pets" [ngClass]="{'active-tab': activeTab == 'pets'}" (click)="changeTab('pets')">Pet Journal</div>
+    </div>
+    <div class="collections-nav-item">
+        <div class="mounts" [ngClass]="{'active-tab': activeTab == 'mounts'}" (click)="changeTab('mounts')">Mounts</div>
+    </div>
+  </div>
+  
+  <div class="battle-pet-slots-container" *ngIf="activeTab == 'pets'">
+    <div class="battle-pet-slots-header">Battle Pet Slots</div>
+    <div class="battle-pet-slots">
+        <div class="battle-pet-slot" *ngFor="let petslot of allCollections['petSlots']">
+            <div class="battle-pet-slot-info">
+                <div class="battle-pet-slot-image" [ngStyle]="{ 'background-image': 'url(http://media.blizzard.com/wow/renders/npcs/pet/creature' + petslot.creatureId + '.jpg)' }"></div>
+                <div class="battle-pet-slot-name-container">
+                    <div class="battle-pet-slot-name" [ngStyle]="{ 'color': petslot.quality }">
+                        <span>{{ petslot.name }}</span>
+                        <div class="battle-pet-slot-name-favorite" *ngIf="petslot.isFavorite">
+                            <svg class="Icon-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64">
+                                <use xlink:href="assets/img/character/collections/favorite.svg#favorite"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="battle-pet-slot-lvl-container">
+                    <div class="battle-pet-slot-lvl">{{ ((petslot.stats.level == 0) ? 'NON-COMBAT PET' : 'level ' + petslot.stats.level) }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="collection-container">
+    <div class="collection-header">
+        {{ ((activeTab == 'mounts') ? 'Mounts' : 'Collection') }}
+        <div class="collection-header-collected">{{ collections['numCollected'] + ' ' + activeTab.charAt(0).toUpperCase() + activeTab.slice(1) }} Collected</div>
+    </div>
+    <div class="collection">
+        <div class="collection-slot" *ngFor="let collection of collections['collected']">
+            <div class="collection-slot-info">
+                <div class="collection-slot-image" [ngStyle]="{ 'background-image': 'url(http://media.blizzard.com/wow/renders/npcs/pet/creature' + collection.creatureId + '.jpg)' }"></div>
+                <div class="collection-slot-name-container">
+                    <div class="collection-slot-name" [ngStyle]="{ 'color': collection.quality }">
+                        {{ collection.name }}
+                        <div class="collection-slot-name-favorite" *ngIf="collection.isFavorite && activeTab == 'pets'">
+                            <svg class="Icon-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64">
+                                <use xlink:href="assets/img/character/collections/pets/favorite.svg#favorite"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="collection-slot-lvl-container" *ngIf="activeTab == 'pets'">
+                    <div class="collection-slot-lvl">{{ ((collection.stats.level == 0) ? 'NON-COMBAT PET' : 'level ' + collection.stats.level) }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</ion-content>
