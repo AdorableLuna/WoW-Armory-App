@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+      <g class="svg-hide" id="speed-color" stroke="none" fill="#000000" stroke-width="1px">
+        <polygon fill="#fece92" points="37.343,57.439 32.491,52.395 53.841,31.865 32.356,8.802 37.478,4.031 63.659,32.135   " stroke="none" stroke-width="1px"></polygon>
+        <polygon fill="#f7941d" points="19.65,50.745 15.492,46.421 30.972,31.536 15.375,14.795 19.766,10.705 39.388,31.768       " stroke="none" stroke-width="1px"></polygon>
+        <polygon fill="#a06b28" points="4.069,44.13 0.603,40.526 10.291,31.211 0.507,20.709 4.165,17.301 17.304,31.405   " stroke="none" stroke-width="1px"></polygon>
+      </g>          
+    </svg>

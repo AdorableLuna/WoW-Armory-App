@@ -1,0 +1,58 @@
+<ion-buttons end class="modal-button">
+  <button ion-button icon-only (click)="closeModal()">
+    <ion-icon name="close"></ion-icon>
+  </button>
+</ion-buttons>
+
+<ion-content class="collection-tooltip">
+  <div class="pets" *ngIf="collection.battlePetGuid">
+    <div class="collection-header">
+      <div class="collection-icon" [ngStyle]="{'background-image': collection ? 'url(https://render-eu.worldofwarcraft.com/icons/56/' + collection.icon + '.jpg)' : '', 'border-color': collection.quality}"></div>
+    
+      <span class="collection-name" [ngStyle]="{ 'color': collection.quality }">
+        {{ collection.name }}
+        <div class="collection-favorite" *ngIf="collection.isFavorite">
+          <svg class="Icon-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64">
+            <use xlink:href="assets/img/character/collections/favorite.svg#favorite"></use>
+          </svg>
+        </div>
+      </span>
+    </div>
+    <div class="collection-stats" *ngIf="collection.stats.level > 0">
+      <div class="family-lvl">
+        <div class="icon" [ngStyle]="{'background-image': collection.family ? 'url(assets/img/character/collections/battlePet-families/' + collection.family.charAt(0).toLowerCase() + collection.family.slice(1) + '.png)' : ''}"></div>
+        <span class="value>">{{ collection.stats.level + ' ' + ((collection.family) ? collection.family : '') }}</span>
+      </div>
+      <div class="health">
+        <div class="icon">
+          <svg viewBox="0 0 64 64">
+            <use xlink:href="assets/img/character/stats/heart.svg#heart" />
+          </svg>
+        </div>
+        <span class="value">{{ collection.stats.health }}</span>
+      </div>
+      <div class="speed">
+        <div class="icon">
+          <svg viewBox="0 0 64 64">
+            <use xlink:href="assets/img/character/stats/speed-color.svg#speed-color" />
+          </svg>
+        </div>
+        <span class="value">{{ collection.stats.speed }}</span>
+      </div>
+        <div class="power">
+        <div class="icon">
+          <svg viewBox="0 0 64 64">
+            <use xlink:href="assets/img/character/stats/ilvl-color.svg#ilvl-color" />
+          </svg>
+        </div>
+        <span class="value">{{ collection.stats.power }}</span>
+      </div>
+    </div>
+    <span class="non-combat" *ngIf="collection.stats.level == 0">Non-combat Pet</span>
+    <div class="collection-render" [ngStyle]="{ 'background-image': 'url(http://media.blizzard.com/wow/renders/npcs/pet/creature' + collection.creatureId + '.jpg)' }"></div>
+  </div>
+  <div class="mounts" *ngIf="!collection.battlePetGuid">
+    <div class="collection-render" [ngStyle]="{ 'background-image': 'url(http://media.blizzard.com/wow/renders/npcs/pet/creature' + collection.creatureId + '.jpg)' }"></div>
+    <span [ngStyle]="{ 'color': collection.quality }">{{ collection.name }}</span>
+  </div>
+</ion-content>

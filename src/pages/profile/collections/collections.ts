@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { ArmoryService } from '../../../app/services/armory.service';
+import { CollectionTooltipPage } from './../../../modals/collection-tooltip/collection-tooltip';
 
-@IonicPage()
 @Component({
     selector: 'page-collections',
     templateUrl: 'collections.html',
@@ -15,7 +15,8 @@ export class CollectionsPage {
     constructor(
         public navCtrl: NavController, 
         private armoryService: ArmoryService,
-        public navParams: NavParams
+        public navParams: NavParams,
+        public modalCtrl: ModalController
     ) {
         this.activeTab = 'pets';
         this.allCollections = JSON.parse(localStorage.getItem('character_data'));
@@ -33,7 +34,6 @@ export class CollectionsPage {
         {
             this.collections = this.allCollections.mounts;
         }
-        console.log(this.collections);
         this.activeTab = tab;
     }
 
@@ -58,5 +58,25 @@ export class CollectionsPage {
         for (let i = 0; i < this.allCollections.mounts.collected.length; i++) {
             this.allCollections.mounts.collected[i]['quality'] = this.armoryService.getQuality(this.allCollections.mounts.collected[i]['qualityId']);
         }
+    }
+
+    openModal(collection) {
+        if (!collection) return;
+        console.log(collection);
+
+        if (collection.battlePetGuid && collection.stats.level > 0) {
+            this.armoryService.getBattlePetSpeciesData(collection.stats.speciesId).then(val => {
+                this.armoryService.getResourcesData('pet/types').then(petTypes => {
+                    for (let petType in petTypes['petTypes']) {
+                        if (petTypes['petTypes'][petType]['id'] == val['petTypeId']) {
+                            collection.family = petTypes['petTypes'][petType]['name'];
+                        }
+                    }
+                });
+            });
+        }
+
+        let collectionModal = this.modalCtrl.create(CollectionTooltipPage, { collection: collection });
+        collectionModal.present();
     }
 }

@@ -17,7 +17,7 @@
     <div class="battle-pet-slots-header">Battle Pet Slots</div>
     <div class="battle-pet-slots">
         <div class="battle-pet-slot" *ngFor="let petslot of allCollections['petSlots']">
-            <div class="battle-pet-slot-info">
+            <div class="battle-pet-slot-info" (click)="openModal(petslot)">
                 <div class="battle-pet-slot-image" [ngStyle]="{ 'background-image': 'url(http://media.blizzard.com/wow/renders/npcs/pet/creature' + petslot.creatureId + '.jpg)' }"></div>
                 <div class="battle-pet-slot-name-container">
                     <div class="battle-pet-slot-name" [ngStyle]="{ 'color': petslot.quality }">
@@ -44,14 +44,14 @@
     </div>
     <div class="collection">
         <div class="collection-slot" *ngFor="let collection of collections['collected']">
-            <div class="collection-slot-info">
+            <div class="collection-slot-info" (click)="openModal(collection)">
                 <div class="collection-slot-image" [ngStyle]="{ 'background-image': 'url(http://media.blizzard.com/wow/renders/npcs/pet/creature' + collection.creatureId + '.jpg)' }"></div>
                 <div class="collection-slot-name-container">
                     <div class="collection-slot-name" [ngStyle]="{ 'color': collection.quality }">
                         {{ collection.name }}
                         <div class="collection-slot-name-favorite" *ngIf="collection.isFavorite && activeTab == 'pets'">
                             <svg class="Icon-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64">
-                                <use xlink:href="assets/img/character/collections/pets/favorite.svg#favorite"></use>
+                                <use xlink:href="assets/img/character/collections/favorite.svg#favorite"></use>
                             </svg>
                         </div>
                     </div>

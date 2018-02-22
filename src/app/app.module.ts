@@ -13,6 +13,7 @@ import { CollectionsPage } from './../pages/profile/collections/collections';
 
 import { GearTooltipPage } from '../modals/gear-tooltip/gear-tooltip';
 import { TalentTooltipPage } from './../modals/talent-tooltip/talent-tooltip';
+import { CollectionTooltipPage } from './../modals/collection-tooltip/collection-tooltip';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -34,6 +35,7 @@ import { NavbarComponent } from '../components/navbar/navbar';
     CollectionsPage,
     GearTooltipPage,
     TalentTooltipPage,
+    CollectionTooltipPage,
     ProfileButton,
     ErrorMessageComponent,
     NavbarComponent
@@ -56,6 +58,7 @@ import { NavbarComponent } from '../components/navbar/navbar';
     CollectionsPage,
     GearTooltipPage,
     TalentTooltipPage,
+    CollectionTooltipPage,
     ProfileButton,
     ErrorMessageComponent,
     NavbarComponent

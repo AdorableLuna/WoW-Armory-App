@@ -181,12 +181,14 @@ page-collections {
                         font-size: 15px;
                         font-weight: 400;
                         text-align: center;
+                        flex-direction: column;
 
                         .collection-slot-name-favorite {
                             display: flex;
                             justify-content: center;
                             align-items: center;
                             color: #aaa;
+                            margin: 2px 0;
 
                             svg {
                                 height: 14px;

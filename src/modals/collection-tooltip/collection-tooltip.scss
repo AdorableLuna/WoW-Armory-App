@@ -1,0 +1,104 @@
+.modal-wrapper {
+
+    .collection-tooltip {
+        .collection-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 15px;
+    
+            .collection-icon {
+                height: 32px;
+                width: 32px;
+                margin-right: 10px;
+                border: solid 1.2px #444;
+                background-color: #000;
+                background-size: cover;
+            }
+
+            .collection-name {
+                display: flex;
+                flex-direction: row;
+
+                .collection-favorite {
+                    color: #aaa;
+                    margin-left: 8px;
+    
+                    svg {
+                        height: 14px;
+                        width: 14px;
+                        fill: currentColor;
+                    }
+                }
+            }
+        }
+
+        .collection-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+
+            .family-lvl, .health, .speed, .power {
+                display: flex;
+                flex-direction: column;
+
+                .icon {
+                    height: 18px;
+                    width: 18px;
+                    background: transparent no-repeat;
+                    background-size: contain;
+
+                    svg {
+                        height: 18px;
+                        width: 18px;
+                    }
+                }
+
+                span {
+                    font-size: 11.5px;
+                    margin: 2px 0 0 0;
+                }
+            }
+
+            .health {
+                .icon {
+                    color: #b30000;
+
+                    svg {
+                        fill: currentColor;
+                    }
+                }
+            }
+        }
+
+        .non-combat {
+            margin: 0 0 10px 0;
+        }
+
+        .collection-render {
+            width: 100%;
+            padding-top: 100%;
+            background-color: #181818;
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0 auto;
+        }
+
+        .mounts {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .collection-render {
+                background-size: 80% 80%;
+            }
+
+            span {
+                font-size: 16px;
+                max-width: 80%;
+                text-align: center;
+            }
+        }
+    }
+}

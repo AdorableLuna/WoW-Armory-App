@@ -85,6 +85,39 @@ export class ArmoryService {
         })
     }
 
+    getBattlePetSpeciesData(speciesId) {
+        return new Promise((resolve, reject) => {
+            this.http.get(this.baseUrl + `pet/species/${speciesId}?locale=en_GB&apikey=${this.api_key}`)
+            .subscribe(val => {
+                resolve(val);
+            }, err => {
+                reject(err);
+            });
+        })
+    }
+
+    getPetsGithub() {
+        return new Promise((resolve, reject) => {
+            this.http.get('https://gist.githubusercontent.com/erorus/3182fd9f0ccf90772f3edd8886d84ffb/raw/cd49e25e14e99989543ac6dab44e1c0e460e2c37/pets.json')
+            .subscribe(val => {
+                resolve(val);
+            }, err => {
+                reject(err);
+            });
+        })
+    }
+
+    getMountsGithub() {
+        return new Promise((resolve, reject) => {
+            this.http.get('https://gist.githubusercontent.com/erorus/d126681dff17396be755967701c0cd8f/raw/568bfdec47a7c228a683b9eceecfac00eab33d95/mounts.json')
+            .subscribe(val => {
+                resolve(val);
+            }, err => {
+                reject(err);
+            });
+        })
+    }
+
     getClassById(classId) {
         switch (classId) {
             case 1:

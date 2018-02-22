@@ -61,7 +61,7 @@ export class TalentsPage {
     openModal(talent) {
         if (!talent) return;
 
-        let gearModal = this.modalCtrl.create(TalentTooltipPage, { talent: talent });
-        gearModal.present();
+        let talentModal = this.modalCtrl.create(TalentTooltipPage, { talent: talent });
+        talentModal.present();
     }
 }
