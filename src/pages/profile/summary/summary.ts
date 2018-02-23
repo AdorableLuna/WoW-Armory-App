@@ -1,3 +1,4 @@
+import { Character } from './../../../classes/character';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ArmoryService } from '../../../app/services/armory.service';
@@ -20,88 +21,122 @@ export class SummaryPage {
     ) {
         this.realm = navParams.get('realm');
         this.name = navParams.get('name');
-        this.getData();
+        this.getData().then(data => {
+            localStorage.setItem('character_data', JSON.stringify(data));
+
+            this.armoryService.character = new Character().deserialize(data);
+        });
     }
 
     getData() {
         this.error = undefined;
+        return new Promise((resolve, reject) => {
+            this.armoryService.getCharacterData(this.realm, this.name, 'guild,items,mounts,pets,petSlots,stats,talents,titles').then(val => {
+                this.stats = val;
+                this.stats.talents = val['talents'].filter(spec => spec['spec']);
+
+                this.characterStats = [
+                    { type: "health", value: val['stats']['health'] },
+                    { type: val['stats']['powerType'], value: val['stats']['power'] },
+                    { type: this.filterStat(), value: val['stats'][this.mainstat()] },
+                    { type: "stamina", value: val['stats']['sta'] },
+                    { type: "critical-strike", value: val['stats']['crit'].toFixed(0) + '%' },
+                    { type: "haste", value: val['stats']['haste'].toFixed(0) + '%' },
+                    { type: "mastery", value: val['stats']['mastery'].toFixed(0) + '%' },
+                    { type: "versatility", value: val['stats']['versatilityDamageDoneBonus'].toFixed(0) + '%' }
+                ];
+
+                this.armoryService.getResourcesData('talents').then(talents => {
+                    this.armoryService.getPetsGithub().then(pets => {
+                        for (let i = 0; i < this.stats.petSlots.length; i++) {
+                            for (let j = 0; j < this.stats.pets.collected.length; j++) {
+                                if (this.stats.petSlots[i]['battlePetGuid'] == this.stats.pets.collected[j]['battlePetGuid']) {
+                                    this.stats.petSlots[i]['creatureId'] = this.stats.pets.collected[j]['creatureId'];
+                                }
+                            }
+
+                            for (let pet in pets) {
+                                if (this.stats.petSlots[i]['creatureId'] == pets[pet]['creatureId']) {
+                                    this.stats.petSlots[i]['displayId'] = pets[pet]['displayId'];
+                                }
+                            }
+                        }
+
+                        for (let j = 0; j < this.stats.pets.collected.length; j++) {
+                            for (let pet in pets) {
+                                if (this.stats.pets.collected[j]['creatureId'] == pets[pet]['creatureId']) {
+                                    this.stats.pets.collected[j]['displayId'] = pets[pet]['displayId'];
+                                }
+                            }
+                        }
+                    });
+
+                    let talentArray = [];
+
+                    for (let spec in talents[val['classId']]['specs']) { //  specs
+                        talentArray[spec] = [];
+                        talentArray[spec]['name'] = talents[val['classId']]['specs'][spec]['name'];
+
+                        talentArray[spec]['tiers'] = [];
+
+                        for (let talentRow in talents[val['classId']]['talents']) { //  row
+                            talentArray[spec]['tiers'][talentRow] = [];
+                            talentArray[spec]['tiers'][talentRow]['columns'] = [];
+                            
+                            LoopTalent:
+                            for (let talent in talents[val['classId']]['talents'][talentRow]) { //  column
+                                for (let specTalent in talents[val['classId']]['talents'][talentRow][talent]) { //  talent
         
-        this.armoryService.getCharacterData(this.realm, this.name, 'guild,items,mounts,pets,petSlots,stats,talents,titles').then(val => {
-            this.stats = val;
-            this.stats.talents = val['talents'].filter(spec => spec['spec']);
-
-            this.characterStats = [
-                { type: "health", value: val['stats']['health'] },
-                { type: val['stats']['powerType'], value: val['stats']['power'] },
-                { type: this.filterStat(), value: val['stats'][this.mainstat()] },
-                { type: "stamina", value: val['stats']['sta'] },
-                { type: "critical-strike", value: val['stats']['crit'].toFixed(0) + '%' },
-                { type: "haste", value: val['stats']['haste'].toFixed(0) + '%' },
-                { type: "mastery", value: val['stats']['mastery'].toFixed(0) + '%' },
-                { type: "versatility", value: val['stats']['versatilityDamageDoneBonus'].toFixed(0) + '%' }
-            ];
-
-            this.armoryService.getResourcesData('talents').then(talents => {
-                let talentArray = [];
-
-                for (let spec in talents[val['classId']]['specs']) { //  specs
-                    talentArray[spec] = [];
-                    talentArray[spec]['name'] = talents[val['classId']]['specs'][spec]['name'];
-
-                    for (let talentRow in talents[val['classId']]['talents']) { //  row
-                        talentArray[spec][talentRow] = [];
-                        
-                        LoopTalent:
-                        for (let talent in talents[val['classId']]['talents'][talentRow]) { //  column
-                            for (let specTalent in talents[val['classId']]['talents'][talentRow][talent]) { //  talent
-    
-                                if (talents[val['classId']]['talents'][talentRow][talent][specTalent]['spec']) {
-                                    if (talents[val['classId']]['talents'][talentRow][talent][specTalent]['spec']['name'] == talentArray[spec]['name']) {
-    
+                                    if (talents[val['classId']]['talents'][talentRow][talent][specTalent]['spec']) {
+                                        if (talents[val['classId']]['talents'][talentRow][talent][specTalent]['spec']['name'] == talentArray[spec]['name']) {
+        
+                                            var found = null;
+                                            for (let talentArrayRow in talentArray[spec]['tiers'][talentRow]['columns']) {
+                                                if (talentArray[spec]['tiers'][talentRow]['columns'][talentArrayRow]['tier'] == talents[val['classId']]['talents'][talentRow][talent][specTalent]['tier'] && talentArray[spec]['tiers'][talentRow]['columns'][talentArrayRow]['column'] == talents[val['classId']]['talents'][talentRow][talent][specTalent]['column']) {
+                                                    talentArray[spec]['tiers'][talentRow]['columns'][talentArrayRow] = talents[val['classId']]['talents'][talentRow][talent][specTalent];
+                                                    found = true;
+                                                    break;
+                                                }
+                                            }
+        
+                                            if (found) {
+                                                continue LoopTalent;
+                                            }
+                                            else {
+                                                talentArray[spec]['tiers'][talentRow]['columns'].push(talents[val['classId']]['talents'][talentRow][talent][specTalent]); 
+                                            }
+                                        }
+                                    }
+        
+                                    else if (!talents[val['classId']]['talents'][talentRow][talent][specTalent]['spec']) {
+        
                                         var found = null;
-                                        for (let talentArrayRow in talentArray[spec][talentRow]) {
-                                            if (talentArray[spec][talentRow][talentArrayRow]['tier'] == talents[val['classId']]['talents'][talentRow][talent][specTalent]['tier'] && talentArray[spec][talentRow][talentArrayRow]['column'] == talents[val['classId']]['talents'][talentRow][talent][specTalent]['column']) {
-                                                talentArray[spec][talentRow][talentArrayRow] = talents[val['classId']]['talents'][talentRow][talent][specTalent];
+                                        for (let talentArrayRow in talentArray[spec]['tiers'][talentRow]['columns']) {
+                                            if (talentArray[spec]['tiers'][talentRow]['columns'][talentArrayRow]['tier'] == talents[val['classId']]['talents'][talentRow][talent][specTalent]['tier'] && talentArray[spec]['tiers'][talentRow]['columns'][talentArrayRow]['column'] == talents[val['classId']]['talents'][talentRow][talent][specTalent]['column']) {
                                                 found = true;
                                                 break;
                                             }
                                         }
-    
-                                        if (found) {
-                                            continue LoopTalent;
+        
+                                        if (!found) {
+                                            talentArray[spec]['tiers'][talentRow]['columns'].push(talents[val['classId']]['talents'][talentRow][talent][specTalent]);
                                         }
-                                        else {
-                                            talentArray[spec][talentRow].push(talents[val['classId']]['talents'][talentRow][talent][specTalent]); 
-                                        }
-                                    }
-                                }
-    
-                                else if (!talents[val['classId']]['talents'][talentRow][talent][specTalent]['spec']) {
-    
-                                    var found = null;
-                                    for (let talentArrayRow in talentArray[spec][talentRow]) {
-                                        if (talentArray[spec][talentRow][talentArrayRow]['tier'] == talents[val['classId']]['talents'][talentRow][talent][specTalent]['tier'] && talentArray[spec][talentRow][talentArrayRow]['column'] == talents[val['classId']]['talents'][talentRow][talent][specTalent]['column']) {
-                                            found = true;
-                                            break;
-                                        }
-                                    }
-    
-                                    if (!found) {
-                                        talentArray[spec][talentRow].push(talents[val['classId']]['talents'][talentRow][talent][specTalent]);
                                     }
                                 }
                             }
                         }
                     }
-                }
-                this.stats.allTalents = talentArray;
-                localStorage.setItem('character_data', JSON.stringify(val));
+                    this.stats.allTalents = talentArray;
+
+                    resolve(val);
+                }, err => {
+                    this.error = { code: err.error.code, detail: err.error.detail };
+                    reject(this.error);
+                });
+
             }, err => {
                 this.error = { code: err.error.code, detail: err.error.detail };
             });
-
-        }, err => {
-            this.error = { code: err.error.code, detail: err.error.detail };
         });
     }
 

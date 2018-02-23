@@ -18,7 +18,7 @@
     <div class="battle-pet-slots">
         <div class="battle-pet-slot" *ngFor="let petslot of allCollections['petSlots']">
             <div class="battle-pet-slot-info" (click)="openModal(petslot)">
-                <div class="battle-pet-slot-image" [ngStyle]="{ 'background-image': 'url(http://media.blizzard.com/wow/renders/npcs/pet/creature' + petslot.creatureId + '.jpg)' }"></div>
+                <div class="battle-pet-slot-image" [ngStyle]="{ 'background-image': 'url(https://render-eu.worldofwarcraft.com/npcs/zoom/creature-display-' + petslot.displayId + '.jpg)' }"></div>
                 <div class="battle-pet-slot-name-container">
                     <div class="battle-pet-slot-name" [ngStyle]="{ 'color': petslot.quality }">
                         <span>{{ petslot.name }}</span>
@@ -45,7 +45,7 @@
     <div class="collection">
         <div class="collection-slot" *ngFor="let collection of collections['collected']">
             <div class="collection-slot-info" (click)="openModal(collection)">
-                <div class="collection-slot-image" [ngStyle]="{ 'background-image': 'url(http://media.blizzard.com/wow/renders/npcs/pet/creature' + collection.creatureId + '.jpg)' }"></div>
+                <div class="collection-slot-image" [ngStyle]="{ 'background-image': 'url(https://render-eu.worldofwarcraft.com/npcs/zoom/creature-display-' + collection.displayId + '.jpg)' }"></div>
                 <div class="collection-slot-name-container">
                     <div class="collection-slot-name" [ngStyle]="{ 'color': collection.quality }">
                         {{ collection.name }}

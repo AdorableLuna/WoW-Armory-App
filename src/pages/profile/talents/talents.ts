@@ -17,11 +17,7 @@ export class TalentsPage {
         private armoryService: ArmoryService,
         public modalCtrl: ModalController
     ) {
-        this.talents = JSON.parse(localStorage.getItem('character_data'));
-
-        this.talents['allTalents'].forEach(spec => {
-            spec['name'] = spec[0]['0']['spec']['name'];
-        });
+        this.talents = this.armoryService.character;
 
         this.activeSpec = this.talents.talents.filter(spec => spec.selected)[0];
         this.activeSpec.talents = _.sortBy(this.activeSpec.talents, 'tier');
@@ -36,8 +32,8 @@ export class TalentsPage {
 
     sortTalents() {
         this.talents.allTalents.forEach(spec => {
-            spec.forEach(talentRow => {
-                talentRow.forEach(talentColumn => {
+            spec.tiers.forEach(talentRow => {
+                talentRow.columns.forEach(talentColumn => {
                     this.activeSpec.talents.forEach(chosenTalent => {
                         talentColumn.selected = false;
                     });
@@ -46,8 +42,8 @@ export class TalentsPage {
         });
 
         this.talents.allTalents.forEach(spec => {
-            spec.forEach(talentRow => {
-                talentRow.forEach(talentColumn => {
+            spec.tiers.forEach(talentRow => {
+                talentRow.columns.forEach(talentColumn => {
                     this.activeSpec.talents.forEach(chosenTalent => {
                         if (talentColumn.spell.name == chosenTalent.spell.name) {
                             talentColumn.selected = true;
