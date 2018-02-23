@@ -1,6 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { NavController, NavParams} from 'ionic-angular';
-import { ProfileButton } from '../../components/profile-button/profile-button';
 
 import { Navbar } from 'ionic-angular';
 import { MyApp } from '../../app/app.component';
