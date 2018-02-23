@@ -109,6 +109,17 @@ export class ArmoryService {
         })
     }
 
+    getMountsGithub() {
+        return new Promise((resolve, reject) => {
+            this.http.get('https://gist.githubusercontent.com/erorus/d126681dff17396be755967701c0cd8f/raw/568bfdec47a7c228a683b9eceecfac00eab33d95/mounts.json')
+            .subscribe(val => {
+                resolve(val['mounts']);
+            }, err => {
+                reject(err);
+            });
+        })
+    }
+
     getClassById(classId) {
         switch (classId) {
             case 1:

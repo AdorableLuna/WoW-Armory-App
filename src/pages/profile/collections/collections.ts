@@ -19,11 +19,10 @@ export class CollectionsPage {
         public modalCtrl: ModalController
     ) {
         this.activeTab = 'pets';
-        this.allCollections = JSON.parse(localStorage.getItem('character_data'));
+        this.allCollections = this.armoryService.character;
         this.sortPetSlots();
         this.sortMounts();
         this.collections = this.allCollections.pets;
-        console.log(this.allCollections);
     }
 
     changeTab(tab) {
@@ -43,7 +42,6 @@ export class CollectionsPage {
             for (let j = 0; j < this.allCollections.pets.collected.length; j++) {
                 if (this.allCollections.petSlots[i]['battlePetGuid'] == this.allCollections.pets.collected[j]['battlePetGuid']) {
                     this.allCollections.petSlots[i]['name'] = this.allCollections.pets.collected[j]['name'];
-                    //this.allCollections.petSlots[i]['creatureId'] = this.allCollections.pets.collected[j]['creatureId'];
                     this.allCollections.petSlots[i]['icon'] = this.allCollections.pets.collected[j]['icon'];
                     this.allCollections.petSlots[i]['quality'] = this.armoryService.getQuality(this.allCollections.pets.collected[j]['qualityId']);
                     this.allCollections.petSlots[i]['stats'] = this.allCollections.pets.collected[j]['stats'];
@@ -57,13 +55,12 @@ export class CollectionsPage {
 
     sortMounts() {
         for (let i = 0; i < this.allCollections.mounts.collected.length; i++) {
-            //this.allCollections.mounts.collected[i]['quality'] = this.armoryService.getQuality(this.allCollections.mounts.collected[i]['qualityId']);
+            this.allCollections.mounts.collected[i]['quality'] = this.armoryService.getQuality(this.allCollections.mounts.collected[i]['qualityId']);
         }
     }
 
     openModal(collection) {
         if (!collection) return;
-        console.log(collection);
 
         if (collection.battlePetGuid && collection.stats.level > 0) {
             this.armoryService.getBattlePetSpeciesData(collection.stats.speciesId).then(val => {

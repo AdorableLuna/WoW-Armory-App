@@ -49,10 +49,10 @@
       </div>
     </div>
     <span class="non-combat" *ngIf="collection.stats.level == 0">Non-combat Pet</span>
-    <div class="collection-render" [ngStyle]="{ 'background-image': 'url(http://media.blizzard.com/wow/renders/npcs/pet/creature' + collection.creatureId + '.jpg)' }"></div>
+    <div class="collection-render" [ngStyle]="{ 'background-image': 'url(https://render-eu.worldofwarcraft.com/npcs/zoom/creature-display-' + collection.displayId + '.jpg)' }"></div>
   </div>
   <div class="mounts" *ngIf="!collection.battlePetGuid">
-    <div class="collection-render" [ngStyle]="{ 'background-image': 'url(http://media.blizzard.com/wow/renders/npcs/pet/creature' + collection.creatureId + '.jpg)' }"></div>
+    <div class="collection-render" [ngStyle]="{ 'background-image': 'url(https://render-eu.worldofwarcraft.com/npcs/zoom/creature-display-' + collection.displayId + '.jpg)' }"></div>
     <span [ngStyle]="{ 'color': collection.quality }">{{ collection.name }}</span>
   </div>
 </ion-content>

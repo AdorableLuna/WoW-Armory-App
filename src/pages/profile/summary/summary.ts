@@ -22,8 +22,6 @@ export class SummaryPage {
         this.realm = navParams.get('realm');
         this.name = navParams.get('name');
         this.getData().then(data => {
-            localStorage.setItem('character_data', JSON.stringify(data));
-
             this.armoryService.character = new Character().deserialize(data);
         });
     }
@@ -66,6 +64,16 @@ export class SummaryPage {
                             for (let pet in pets) {
                                 if (this.stats.pets.collected[j]['creatureId'] == pets[pet]['creatureId']) {
                                     this.stats.pets.collected[j]['displayId'] = pets[pet]['displayId'];
+                                }
+                            }
+                        }
+                    });
+
+                    this.armoryService.getMountsGithub().then(mounts => {
+                        for (let i = 0; i < this.stats.mounts.collected.length; i++) {
+                            for (let mount in mounts) {
+                                if (this.stats.mounts.collected[i]['creatureId'] == mounts[mount]['creatureId']) {
+                                    this.stats.mounts.collected[i]['displayId'] = mounts[mount]['displayId'];
                                 }
                             }
                         }

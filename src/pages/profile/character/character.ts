@@ -111,7 +111,7 @@ export class CharacterPage {
     }
     
     getData() {
-        this.items = JSON.parse(localStorage.getItem('character_data'));
+        this.items = this.armoryService.character;
         for (var slot in this.slots) {
             for (var item in this.slots[slot]) {
                 for (var items in this.items['items']) {
