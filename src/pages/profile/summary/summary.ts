@@ -1,6 +1,6 @@
 import { Character } from './../../../classes/character';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, MenuController } from 'ionic-angular';
 import { ArmoryService } from '../../../app/services/armory.service';
 
 @Component({
@@ -17,7 +17,8 @@ export class SummaryPage {
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
-        private armoryService: ArmoryService
+        private armoryService: ArmoryService,
+        private menu: MenuController
     ) {
         this.realm = navParams.get('realm');
         this.name = navParams.get('name');
@@ -28,6 +29,7 @@ export class SummaryPage {
 
     getData() {
         this.error = undefined;
+        this.menu.swipeEnable(true);
         return new Promise((resolve, reject) => {
             this.armoryService.getCharacterData(this.realm, this.name, 'guild,items,mounts,pets,petSlots,stats,talents,titles').then(val => {
                 this.stats = val;
@@ -139,11 +141,13 @@ export class SummaryPage {
                     resolve(val);
                 }, err => {
                     this.error = { code: err.error.code, detail: err.error.detail };
+                    this.menu.swipeEnable(false);
                     reject(this.error);
                 });
 
             }, err => {
-                this.error = { code: err.error.code, detail: err.error.detail };
+                this.error = { code: err.error.code || err.error.status, detail: err.error.detail || err.error.reason };
+                this.menu.swipeEnable(false);
             });
         });
     }

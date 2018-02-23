@@ -4,7 +4,7 @@
   </ion-buttons>
 
   <ion-title>
-    <img src="assets/img/background/wow_title.png">
+    <img src="assets/img/background/wow_title.png" [ngStyle]="{'margin-right': profilebtn && !menu ? '50px' : ''}">
   </ion-title>
 
   <ion-buttons end *ngIf="menu">

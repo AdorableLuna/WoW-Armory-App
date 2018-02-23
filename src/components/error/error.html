@@ -1,6 +1,7 @@
 <div class="error" *ngIf="message">
-  <img class="an-illusion" src="assets/img/errors/what-are-you-hiding.jpg">
-  <span class="title">Something’s Not Quite Right <br>Please try again.</span>
+  <img class="error-image" [src]="((message?.code == 'nok') ? 'assets/img/errors/and-it-is-gone.jpg' : 'assets/img/errors/what-are-you-hiding.jpg')">
+  <span class="title">{{ ((message?.code == 'nok') ? "Aaaaand it's gone." : "Something’s Not Quite Right") }} <span *ngIf="message?.code != 'nok'"><br>Please try again.</span></span>
+  <span class="and-it-is-gone" *ngIf="message?.code == 'nok'">We're going to use this extra bandwidth to run an ajax request and force the CDN to put the view you're looking for right above the fold... aaaaand it's gone. Your view is gone. Poof. It's all gone. Please reload the view to try again.</span>
   <span>Details: {{ message?.detail }}</span>
   <button ion-button (click)="reload">Reload</button>
 </div>

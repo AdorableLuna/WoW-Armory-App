@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, MenuController } from 'ionic-angular';
 import { ArmoryService } from '../../app/services/armory.service';
 import { SummaryPage } from '../profile/summary/summary';
 import * as _ from 'lodash';
@@ -15,9 +15,10 @@ export class CharactersPage {
 
     constructor(
         public navCtrl: NavController,
-        private armoryService: ArmoryService
+        private armoryService: ArmoryService,
+        private menu: MenuController
     ) {
-
+        this.menu.swipeEnable(false);
     }
 
     ngOnInit() {

@@ -1,5 +1,5 @@
 <ion-header>
-  <navbar [hideBackButton]="true" [profilebtn]="true" [menu]="true"></navbar>
+  <navbar [hideBackButton]="true" [profilebtn]="true" [menu]="!error"></navbar>
 </ion-header>
 
 <ion-content padding>
@@ -33,7 +33,7 @@
               <span class="ilvl">{{ stats?.items.averageItemLevelEquipped }} ilvl</span>
             </div>
             <div class="characterheader-details">
-              <span><span class="character-block" class="guild">❮{{ stats?.guild.name }}❯</span> {{ stats?.realm }}</span>
+              <span><span class="character-block" class="guild" *ngIf="stats?.guild?.name">❮{{ stats?.guild?.name }}❯</span> {{ stats?.realm }}</span>
             </div>
           </div>
         </div>
