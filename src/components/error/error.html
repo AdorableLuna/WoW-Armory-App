@@ -1,5 +1,6 @@
 <div class="error" *ngIf="message">
-  <span class="title">Something went wrong! Please try again.</span>
+  <img class="an-illusion" src="assets/img/errors/what-are-you-hiding.jpg">
+  <span class="title">Something’s Not Quite Right <br>Please try again.</span>
   <span>Details: {{ message?.detail }}</span>
   <button ion-button (click)="reload">Reload</button>
 </div>

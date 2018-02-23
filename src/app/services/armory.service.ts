@@ -10,6 +10,7 @@ export class ArmoryService {
     private api_key: string;
 
     public standardData: any;
+    
     public character: Character;
 
     constructor(

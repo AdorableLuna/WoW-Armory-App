@@ -2,10 +2,14 @@
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     color: #fff;
+
+    .an-illusion {
+        margin: 10px 0 20px 0;
+        max-width: 95%;
+    }
 
     .title {
         font-weight: 700;
